@@ -1,0 +1,18 @@
+
+[y,Fs] = audioread('noisy_song.wav');
+
+subplot(2,4,1);
+plot(y);
+title('Audio Signal');
+subplot(2,4,2)
+spectrogram(y,'yaxis');
+xlabel('Time'); 
+ylabel ('Hz');
+title ('FFT Spectrum');
+
+lpf_audio = lowpassfilter(500,y,Fs);
+subplot(2,4)
+hpf_audio = highpassfilter(500,y,Fs);
+audiowrite('LowPassFilter.wav',abs(lpf_audio),Fs)
+audiowrite('HighPassFilter.wav',abs(hpf_audio),Fs)
+%figure,plot(highpass(s,150,fs))

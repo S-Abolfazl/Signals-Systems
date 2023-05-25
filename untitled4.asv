@@ -1,0 +1,39 @@
+clc;    % Clear the command window.
+
+
+
+[y1,fs] = audioread('noisy_song.wav');
+ft = fft(y1);
+
+v = linspace(-fs/2,fs/2,length(ft));
+func = imag(fftshift(ft));
+%figure, plot(v,func)
+%size(ft)
+%figure, plot(ft)
+%xlabel('Frequency'); 
+%ylabel ('X(w)');
+
+%s = fs;
+wc = 2000;
+%t = -2000:1/1000:2000;
+%w = wc;
+%x = rectpuls(t,2*w);
+
+w1 = (size(v,2)/2) - 1;
+w = -w1:1:w1;
+
+tabe = zeros(size(w));
+
+func(v < -wc | v > wc) = 0;
+figure, plot(v,func)
+%dd = imag(fftshift(ft)) .* tabe;
+%dd = imag(fftshift(ft)) .* rectpuls(t,2*w);
+%Yw = ft .* (rectpuls(t,2*w));
+%exit = ifft(ft .* x);
+%audiowrite(filename,exit,Fs);
+
+%f = rectpuls(x,w) .* ft;
+%figure, plot(x,f)
+%x(w >= (-1*wc) & w <= wc) = ft;
+%figure, plot(w,x)
+%lowpassfilter(2,func)

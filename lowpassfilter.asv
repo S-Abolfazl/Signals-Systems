@@ -1,0 +1,12 @@
+function [outputArg] = lowpassfilter(wc,y1,fs)
+
+ft = fft(y1);
+
+v = linspace(-fs/2,fs/2,length(ft));
+func = imag(fftshift(ft));
+
+func(v < -wc | v > wc) = 0;
+
+
+outputArg = ifft(func);
+end
